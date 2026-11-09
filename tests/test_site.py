@@ -1,5 +1,6 @@
 """The landing page's data are consistent, its pictures are the right size and its markup is sound."""
 
+import html
 import os
 import re
 import urllib.request
@@ -52,10 +53,9 @@ def test_live_links_point_at_their_own_repo():
 
 def test_one_feature_card_and_no_numbers_in_blurbs():
     assert sum(1 for c in CARDS if c.get("feature")) == 1
-    # blurbs quote no figures except a date and paper sizes, so none needs a source line (the truth gate)
+    # blurbs quote no figures except paper sizes, so none needs a source line (the truth gate)
     for c in CARDS:
-        assert not re.search(r"\d", re.sub(r"5 November 2026|A4 to A0", "", c["blurb"])), c["id"]
-    assert not re.search(r"\d", PAGES["hero"]["lede"] + PAGES["about"]["text"])
+        assert not re.search(r"\d", re.sub(r"A4 to A0", "", c["blurb"])), c["id"]
 
 
 def test_pictures_have_the_stated_size():
@@ -76,11 +76,12 @@ def test_fjord_ramp_comes_from_the_tokens():
 
 def test_detuned_picture_stays_inside_the_ramp_tones():
     ramp = build_images.fjord_ramp()
-    with Image.open(ROOT / "images" / "wildcat.webp") as im:
-        lum = np.asarray(im.convert("L"))
     darkest = ramp[0] @ [0.299, 0.587, 0.114] * 255
-    assert lum.min() >= darkest - 20  # no black: the tones are compressed
-    assert lum.max() <= 250
+    for f in (ROOT / "images").glob("*.webp"):
+        with Image.open(f) as im:
+            lum = np.asarray(im.convert("L"))
+        assert lum.min() >= darkest - 20, f.name  # no black: the tones are compressed
+        assert lum.max() <= 253, f.name  # and no pure white (a figure's paper becomes the palest fjord step)
 
 
 def test_markup(built):
@@ -96,11 +97,27 @@ def test_markup(built):
     assert "Built with Overlook by Adam McCarthy (https://github.com/AdmcCarthy/Overlook)" in text
 
 
-def test_every_credited_photographer_appears(built):
+def test_every_credit_the_pictures_need_appears(built):
     _, page = built
-    used = {PAGES["hero"]["image"]} | {c["image"]["key"] for c in CARDS}
-    for k in used:
-        assert IMAGES["sources"][k]["credit"] in page
+    text = html.unescape(re.sub(r"<[^>]+>", "", page))
+    used = build_site.used_sources(PAGES, IMAGES)
+    for k, s in used.items():
+        if "file" in s:
+            assert s["credit"] in text, k  # the photographer
+        for line in s.get("lines", []):
+            assert line in text, k  # the data lines for pictures cut from the linked pages
+    # the Volve picture carries the Volve terms' line, generalised
+    assert "Contains data from the Volve data village" in text and "Generalised for display." in text
+    assert "Source: Sodir." in text
+
+
+def test_removed_things_stay_removed(built):
+    _, page = built
+    assert "Who is behind this" not in page and 'class="about' not in page
+    assert 'class="lede"' not in page  # no text under the headline
+    assert "Forty-Eight" not in page and "Viz_demo_generic" not in page
+    assert "viz_demo_generic" in build_site.excluded()
+    assert "forty-eight" not in {c["id"] for c in CARDS}
 
 
 def test_style_uses_tokens_not_colours():

@@ -1,7 +1,7 @@
 # Repositories that must never appear on the page: the older practice and course projects in the same account.
 # scripts/build_site.py refuses to build, and tests/test_site.py fails, if any of these is a card or is linked
 # anywhere in the built page. Add a name here to keep a repo off the page for good.
-reason: Older practice, course and experiment repositories; not part of the work this page presents.
+reason: Older practice, course and experiment repositories, and pages removed on request; not part of the work this page presents.
 repos:
   - data_bricks_practice
   - data_portal
@@ -38,3 +38,4 @@ repos:
   - subplot
   - tensorflow
   - visual_design
+  - Viz_demo_generic   # "Forty-Eight Hours", a non-geoscience demo: removed from the page on request
