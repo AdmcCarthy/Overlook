@@ -1,0 +1,40 @@
+# Repositories that must never appear on the page: the older practice and course projects in the same account.
+# scripts/build_site.py refuses to build, and tests/test_site.py fails, if any of these is a card or is linked
+# anywhere in the built page. Add a name here to keep a repo off the page for good.
+reason: Older practice, course and experiment repositories; not part of the work this page presents.
+repos:
+  - data_bricks_practice
+  - data_portal
+  - data-science-template
+  - Face_generation_GAN
+  - First_Neural_Network
+  - Geochemical_EDA
+  - History_of_North_Sea_Discoveries
+  - How_about_a_web_page
+  - Identify_Fraud_from_Enron_Email
+  - Image_Classification_Project
+  - Interactive_WebApp
+  - Investigating_Baseball_Data
+  - learning_deep_learning
+  - Make_tv_scripts
+  - Neural-Networks_and_Deep-Learning_Course
+  - NPD_WebApp
+  - OpenStreetMap
+  - OPOE2
+  - Oslo_OpenStreetMap
+  - Red_Wines
+  - Rock_Permeability
+  - sbc
+  - SEGY_Deep_Learning
+  - Stroop_Effect
+  - Translation_using_RNNs
+  - WebApp_Template
+  - WebApp_test
+  - North_Sea_Visualisation
+  - Norwegian_House_Prices
+  - d3_demo
+  - flour_first
+  - subdata
+  - subplot
+  - tensorflow
+  - visual_design

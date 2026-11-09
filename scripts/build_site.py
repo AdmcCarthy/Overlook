@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import html
 import importlib.resources as res
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -38,9 +39,24 @@ def cards(pages: dict) -> list[dict]:
     return [c for sec in pages["sections"] for c in sec["cards"]]
 
 
+def excluded() -> set[str]:
+    """Repositories that must never appear (data/excluded.yaml), lower-cased."""
+    data = yaml.safe_load((ROOT / "data" / "excluded.yaml").read_text(encoding="utf-8"))
+    return {r.lower() for r in data["repos"]}
+
+
+def banned_links(page_html: str) -> list[str]:
+    """Excluded repositories that the built page links to, by GitHub or Pages address."""
+    found = re.findall(r"(?:github\.com/AdmcCarthy|admccarthy\.github\.io)/([\w.-]+)", page_html, re.I)
+    return sorted({n for n in found if n.lower() in excluded()})
+
+
 def check(pages: dict, images: dict) -> list[str]:
-    """Problems that would break the page: unknown targets or picture keys, missing files, duplicate ids."""
+    """Problems that would break the page: unknown targets or picture keys, missing files, duplicate ids, excluded repos."""
     bad, seen = [], set()
+    for c in cards(pages):
+        if c["repo"].lower() in excluded():
+            bad.append(f"{c['id']}: {c['repo']} is on the exclusion list (data/excluded.yaml)")
     ids = {c["id"] for c in cards(pages)}
     to = pages["hero"]["primary"]["to"]
     if to not in ids:
@@ -173,7 +189,11 @@ def main(out: Path) -> None:
     for f in ("style.css", "main.js"):
         shutil.copy(ROOT / "site" / f, out / f)
     (out / ".nojekyll").write_text("")
-    (out / "index.html").write_text(page(pages, images), encoding="utf-8")
+    text = page(pages, images)
+    leaked = banned_links(text)
+    if leaked:
+        raise SystemExit(f"the page links to excluded repositories: {', '.join(leaked)}")
+    (out / "index.html").write_text(text, encoding="utf-8")
     print(f"wrote {out / 'index.html'}")
 
 

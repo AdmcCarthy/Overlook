@@ -30,6 +30,20 @@ def test_data_are_consistent():
     assert build_site.check(PAGES, IMAGES) == []
 
 
+def test_older_repos_never_appear(built):
+    out, page = built
+    ban = build_site.excluded()
+    assert len(ban) >= 20 and not {c["repo"].lower() for c in CARDS} & ban
+    assert build_site.banned_links(page) == []
+    # the guard bites: a card for an excluded repo fails the check, and a link to one is found
+    bad = {**PAGES, "sections": [{**PAGES["sections"][0], "cards": [{**CARDS[0], "repo": "Red_Wines"}]}]}
+    assert any("exclusion list" in p for p in build_site.check(bad, IMAGES))
+    assert build_site.banned_links('<a href="https://github.com/AdmcCarthy/Stroop_Effect">x</a>') == ["Stroop_Effect"]
+    # every text file the build writes is clean too, not only the page
+    for f in out.rglob("*.html"):
+        assert build_site.banned_links(f.read_text(encoding="utf-8")) == [], f.name
+
+
 def test_live_links_point_at_their_own_repo():
     for c in CARDS:
         if c.get("live"):

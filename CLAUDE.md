@@ -16,6 +16,8 @@ Voice and structure of written work (README, docs, published pages) follow Idiom
   fjord scale (from the tokens) and the WebP files in `images/` are committed. Credit every photographer on the page.
 - **Cards:** one entry in `data/pages.yaml` per public page (live URL, repo, picture crop). Plate and Sheet have no page: link to code.
   Blurbs state only what the page itself says.
+- **The older repos are banned.** `data/excluded.yaml` lists the practice and course repos (Enron, baseball, GAN and the like); the
+  build refuses to run, and a test fails, if one is a card or is linked anywhere in the page. Never add one; add new older repos to the list.
 - Before showing prose: `python scripts/check_banned.py` and `check_voice.py` from Idiom, on `README.md` and the text in `data/pages.yaml`.
 - Keep Idiom's `DIRECTORY.md` card for this repo true when it changes.
 
