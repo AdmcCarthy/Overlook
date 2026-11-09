@@ -82,7 +82,7 @@ sections:
         repo: SubScout
         live: https://admccarthy.github.io/SubScout/
         blurb: "One Markdown file and its data become a page that reads as an article or plays as a deck, with the style and the checks built in."
-        image: { key: subscout_colour, box: [140, 1960, 600, 400] }
+        image: { key: badlands, cx: 0.6, cy: 0.5, w: 0.7 }
       - id: plate
         kind: Print
         title: "Plate"

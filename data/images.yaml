@@ -11,12 +11,18 @@ tone:
 keep: 0.20                          # share of the original's (desaturated) colour kept under the fjord scale
 chrome: C:\Program Files\Google\Chrome\Application\chrome.exe   # or set CHROME
 sources:
-  # photographs: used for the hero and for the repos that have no static image of their own
+  # photographs: the hero, every card in the Tools section (SubScout, Plate, Sheet: tools show no figures of their own),
+  # and the repos that have no static image of their own
   wadi:
     file: nasa-fDSqEWLRNFE-unsplash.jpg
     credit: NASA
     url: https://unsplash.com/photos/fDSqEWLRNFE
     what: A desert drainage seen from orbit, with pipelines and well pads
+  badlands:
+    file: patrick-robert-doyle-qTcUTVeO-dk-unsplash.jpg
+    credit: Patrick Robert Doyle
+    url: https://unsplash.com/photos/qTcUTVeO-dk
+    what: Eroded badlands in banded rock
   agate:
     file: savannah-wakefield-d97LTUU3mhA-unsplash.jpg
     credit: Savannah Wakefield
@@ -50,10 +56,6 @@ sources:
     capture: { url: "https://admccarthy.github.io/Relief/", window: [1440, 1300] }
     page: Relief
     lines: ["Base maps: Relief; © DLR e.V. 2010-2014 and © Airbus 2014-2018, provided under COPERNICUS by the European Union and ESA; EMODnet Bathymetry Consortium (2024): EMODnet Digital Bathymetry (DTM)."]
-  subscout_colour:
-    capture: { url: "https://admccarthy.github.io/SubScout/", window: [1440, 4600] }
-    page: SubScout
-    lines: []
   seismic_flow:
     download: https://raw.githubusercontent.com/AdmcCarthy/seismic_art_gallery/main/gallery/flow.jpg
     page: seismic_art_gallery

@@ -14,6 +14,8 @@ Voice and structure of written work (README, docs, published pages) follow Idiom
   Restraint over effect: nothing loops, `prefers-reduced-motion` switches motion off.
 - **Pictures:** originals live outside the repo (`../../Images`, Unsplash); `scripts/build_images.py` detunes each crop into the
   fjord scale (from the tokens) and the WebP files in `images/` are committed. Credit every photographer on the page.
+- **The Tools section shows photographs only** (SubScout, Plate, Sheet): tools do not use their own imagery; a test enforces it. Other
+  cards use the linked page's own figure where the repo has one, else a photograph.
 - **Cards:** one entry in `data/pages.yaml` per public page (live URL, repo, picture crop). Plate and Sheet have no page: link to code.
   Blurbs state only what the page itself says.
 - **The older repos are banned.** `data/excluded.yaml` lists the practice and course repos (Enron, baseball, GAN and the like); the

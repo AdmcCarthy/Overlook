@@ -111,6 +111,13 @@ def test_every_credit_the_pictures_need_appears(built):
     assert "Source: Sodir." in text
 
 
+def test_tools_use_photographs_not_their_own_figures():
+    tools = next(s for s in PAGES["sections"] if s["id"] == "tools")
+    assert {c["id"] for c in tools["cards"]} >= {"subscout", "plate", "sheet"}
+    for c in tools["cards"]:
+        assert "file" in IMAGES["sources"][c["image"]["key"]], c["id"]  # a photograph, never a capture or download
+
+
 def test_removed_things_stay_removed(built):
     _, page = built
     assert "Who is behind this" not in page and 'class="about' not in page
