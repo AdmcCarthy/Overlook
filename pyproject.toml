@@ -1,0 +1,28 @@
+[project]
+name = "overlook"
+version = "0.1.0"
+description = "Overlook: a landing page for the public subsurface data stories, maps and tools"
+requires-python = ">=3.12,<3.13"
+license = { file = "LICENSE" }
+dependencies = [
+    "subscout",
+    "pyyaml>=6",
+    "pillow>=10",
+    "numpy>=1.26",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+subscout = { git = "https://github.com/AdmcCarthy/SubScout", tag = "v0.6.0" }
+
+[tool.pytest.ini_options]
+pythonpath = ["scripts"]
+markers = ["network: checks live links; run with OVERLOOK_LINKS=1"]
+
+[tool.ruff]
+line-length = 120

@@ -1,0 +1,34 @@
+# Source photographs (Unsplash License: free to use, credit given anyway). The originals stay outside the
+# repo (large); scripts/build_images.py detunes them into the fjord scale and writes images/*.webp.
+# folder: where the originals sit; override with the OVERLOOK_IMAGES environment variable.
+folder: ../../Images
+tone:
+  hero: { low: 0.46, high: 0.97 }   # light, so dark type sits on it
+  card: { low: 0.20, high: 0.93 }
+keep: 0.20                          # share of the original's (desaturated) colour kept under the fjord scale
+sources:
+  braids:
+    file: dan-meyers-rGXKsc9hZtU-unsplash.jpg
+    credit: Dan Meyers
+    url: https://unsplash.com/photos/rGXKsc9hZtU
+    what: Braided channels and hot-spring pools seen from above
+  wadi:
+    file: nasa-fDSqEWLRNFE-unsplash.jpg
+    credit: NASA
+    url: https://unsplash.com/photos/fDSqEWLRNFE
+    what: A desert drainage seen from orbit, with pipelines and well pads
+  badlands:
+    file: patrick-robert-doyle-qTcUTVeO-dk-unsplash.jpg
+    credit: Patrick Robert Doyle
+    url: https://unsplash.com/photos/qTcUTVeO-dk
+    what: Eroded badlands in banded rock
+  agate:
+    file: savannah-wakefield-d97LTUU3mhA-unsplash.jpg
+    credit: Savannah Wakefield
+    url: https://unsplash.com/photos/d97LTUU3mhA
+    what: A polished agate and amethyst slice showing layers
+  delta:
+    file: usgs-qTV6c2pjbBo-unsplash.jpg
+    credit: USGS
+    url: https://unsplash.com/photos/qTV6c2pjbBo
+    what: The Lena delta from Landsat, in false colour
