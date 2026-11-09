@@ -1,9 +1,10 @@
-"""Detune the source photographs into SubScout's fjord colour scale.
+"""Detune the source pictures into SubScout's fjord colour scale.
 
-Each card's picture is a crop of one of the originals (data/pages.yaml), mapped through the fjord ramp by
-luminance, its tones compressed so the darkest and lightest stay calm, with a little of the original's colour kept
-underneath. The result is written to images/<card>.webp (and images/hero.webp). The originals live outside the
-repo; set OVERLOOK_IMAGES or edit `folder` in data/images.yaml.
+Each card's picture is a crop of one of the originals (data/pages.yaml): a photograph, or a figure captured from the
+linked page by scripts/grab_images.py. It is mapped through the fjord ramp by luminance, its tones compressed so the
+darkest and lightest stay calm, with a little of the original's colour kept underneath. The result is written to
+images/<card>.webp (and images/hero.webp). The originals live outside the repo; set OVERLOOK_IMAGES or edit `folder`
+in data/images.yaml.
 
 Usage: python scripts/build_images.py [card ids ...]
 """
@@ -21,7 +22,7 @@ import yaml
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
-CARD_SIZE = (1200, 900)  # 4:3
+CARD_SIZE = (1200, 800)  # 3:2
 HERO_WIDTH = 2400
 
 
@@ -49,7 +50,14 @@ def detune(img: Image.Image, ramp: np.ndarray, low: float, high: float, keep: fl
     return Image.fromarray((np.clip(out, 0, 1) * 255 + 0.5).astype(np.uint8))
 
 
-def crop(img: Image.Image, cx: float, cy: float, w: float, aspect: float) -> Image.Image:
+def crop(img: Image.Image, spec: dict, aspect: float) -> Image.Image:
+    """A photograph is cut by centre and width (fractions); a captured figure by a pixel box (x, y, width, height)."""
+    if "box" in spec:
+        x, y, w, h = spec["box"]
+        if abs(w / h - aspect) > 0.02:
+            raise SystemExit(f"crop box {spec['box']} is not {aspect:.2f}:1")
+        return img.crop((x, y, x + w, y + h))
+    cx, cy, w = spec["cx"], spec["cy"], spec["w"]
     iw, ih = img.size
     bw = min(w * iw, ih * aspect)
     bh = bw / aspect
@@ -63,6 +71,14 @@ def main(only: list[str]) -> None:
     pages = yaml.safe_load((ROOT / "data" / "pages.yaml").read_text(encoding="utf-8"))
     folder = Path(os.environ.get("OVERLOOK_IMAGES") or ROOT / cfg["folder"]).resolve()
     ramp = fjord_ramp()
+
+    def source_path(key: str) -> Path:
+        src = cfg["sources"][key]
+        if "file" in src:
+            return folder / src["file"]
+        suffix = Path(src["download"]).suffix if "download" in src else ".png"
+        return folder / "captures" / f"{key}{suffix}"
+
     out = ROOT / "images"
     out.mkdir(exist_ok=True)
     jobs = [("hero", pages["hero"]["image"], None)]
@@ -74,14 +90,14 @@ def main(only: list[str]) -> None:
         if only and name not in only:
             continue
         if key not in cache:
-            cache[key] = ImageOps.exif_transpose(Image.open(folder / cfg["sources"][key]["file"]))
+            cache[key] = ImageOps.exif_transpose(Image.open(source_path(key)))
         img = cache[key]
         if spec is None:  # the hero: the whole picture, lighter
             tone, size = cfg["tone"]["hero"], (HERO_WIDTH, round(HERO_WIDTH * img.height / img.width))
             piece = img
         else:
             tone, size = cfg["tone"]["card"], CARD_SIZE
-            piece = crop(img, spec["cx"], spec["cy"], spec["w"], CARD_SIZE[0] / CARD_SIZE[1])
+            piece = crop(img, spec, CARD_SIZE[0] / CARD_SIZE[1])
         piece = piece.resize(size, Image.LANCZOS)
         result = detune(piece, ramp, tone["low"], tone["high"], cfg["keep"])
         path = out / f"{name}.webp"

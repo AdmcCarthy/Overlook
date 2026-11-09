@@ -1,27 +1,22 @@
-# Source photographs (Unsplash License: free to use, credit given anyway). The originals stay outside the
-# repo (large); scripts/build_images.py detunes them into the fjord scale and writes images/*.webp.
+# Pictures. Two kinds of source, both kept outside the repo (the detuned WebP results in images/ are committed):
+#   file:    a photograph in `folder` (Unsplash License: free to use, credit given anyway)
+#   capture: a figure from a published page (a headless-browser screenshot) or a file from a repo (`download`),
+#            saved to <folder>/captures by scripts/grab_images.py; the crop is a pixel box in pages.yaml.
+# `lines` are the credit lines the footer must carry for any picture cut from that source (Idiom DATASETS.md).
 # folder: where the originals sit; override with the OVERLOOK_IMAGES environment variable.
 folder: ../../Images
 tone:
   hero: { low: 0.46, high: 0.97 }   # light, so dark type sits on it
   card: { low: 0.20, high: 0.93 }
 keep: 0.20                          # share of the original's (desaturated) colour kept under the fjord scale
+chrome: C:\Program Files\Google\Chrome\Application\chrome.exe   # or set CHROME
 sources:
-  braids:
-    file: dan-meyers-rGXKsc9hZtU-unsplash.jpg
-    credit: Dan Meyers
-    url: https://unsplash.com/photos/rGXKsc9hZtU
-    what: Braided channels and hot-spring pools seen from above
+  # photographs: used for the hero and for the repos that have no static image of their own
   wadi:
     file: nasa-fDSqEWLRNFE-unsplash.jpg
     credit: NASA
     url: https://unsplash.com/photos/fDSqEWLRNFE
     what: A desert drainage seen from orbit, with pipelines and well pads
-  badlands:
-    file: patrick-robert-doyle-qTcUTVeO-dk-unsplash.jpg
-    credit: Patrick Robert Doyle
-    url: https://unsplash.com/photos/qTcUTVeO-dk
-    what: Eroded badlands in banded rock
   agate:
     file: savannah-wakefield-d97LTUU3mhA-unsplash.jpg
     credit: Savannah Wakefield
@@ -32,3 +27,34 @@ sources:
     credit: USGS
     url: https://unsplash.com/photos/qTV6c2pjbBo
     what: The Lena delta from Landsat, in false colour
+  # figures from the published pages
+  tulip_full:
+    capture: { url: "https://admccarthy.github.io/Tulip/full/?theme=light", window: [1900, 1000] }
+    page: Tulip
+    lines: ["Source: Sodir."]
+  wildcat_glyphs:
+    capture: { url: "https://admccarthy.github.io/Wildcat/export/glyphs/?theme=light", window: [1600, 1100] }
+    page: Wildcat
+    lines:
+      - "Source: Sodir."
+      - "Base maps: Relief; © DLR e.V. 2010-2014 and © Airbus 2014-2018, provided under COPERNICUS by the European Union and ESA; EMODnet Bathymetry Consortium (2024): EMODnet Digital Bathymetry (DTM)."
+  apa_map:
+    capture: { url: "https://admccarthy.github.io/APA_awards/", window: [1440, 2600] }
+    page: APA_awards
+    lines: ["Source: Sodir."]
+  volve_fjord:
+    capture: { url: "https://admccarthy.github.io/volve-surfaces/", window: [1440, 3300] }
+    page: volve-surfaces
+    lines: ["Contains data from the Volve data village, © Equinor ASA and the former Volve licence partners (ExxonMobil E&P Norway, Bayerngas Norge). Used under the Volve Terms and Conditions. Generalised for display."]
+  relief_maps:
+    capture: { url: "https://admccarthy.github.io/Relief/", window: [1440, 1300] }
+    page: Relief
+    lines: ["Base maps: Relief; © DLR e.V. 2010-2014 and © Airbus 2014-2018, provided under COPERNICUS by the European Union and ESA; EMODnet Bathymetry Consortium (2024): EMODnet Digital Bathymetry (DTM)."]
+  subscout_colour:
+    capture: { url: "https://admccarthy.github.io/SubScout/", window: [1440, 4600] }
+    page: SubScout
+    lines: []
+  seismic_flow:
+    download: https://raw.githubusercontent.com/AdmcCarthy/seismic_art_gallery/main/gallery/flow.jpg
+    page: seismic_art_gallery
+    lines: ["Seismic sketch drawn from synthetic data."]

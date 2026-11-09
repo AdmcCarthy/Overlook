@@ -63,6 +63,9 @@ def check(pages: dict, images: dict) -> list[str]:
         bad.append(f"hero primary points at unknown card {to!r}")
     if pages["hero"]["image"] not in images["sources"]:
         bad.append("hero picture key is not in images.yaml")
+    for k, s in used_sources(pages, images).items():
+        if "file" not in s and "lines" not in s:
+            bad.append(f"picture source {k} has no credit lines (use an empty list if none are needed)")
     if not (ROOT / "images" / "hero.webp").exists():
         bad.append("images/hero.webp is missing (run scripts/build_images.py)")
     for c in cards(pages):
@@ -88,7 +91,7 @@ def card_html(c: dict) -> str:
     cls = "card reveal" + (" feature" if c.get("feature") else "")
     return f"""      <article class="{cls}" id="{e(c['id'])}">
         <a class="card-media" href="{e(main)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <img src="images/{e(c['id'])}.webp" alt="" width="1200" height="900" loading="lazy" decoding="async">
+          <img src="images/{e(c['id'])}.webp" alt="" width="1200" height="800" loading="lazy" decoding="async">
         </a>
         <div class="card-body">
           <p class="kicker">{e(c['kind'])}</p>
@@ -100,22 +103,33 @@ def card_html(c: dict) -> str:
 
 
 def section_html(sec: dict) -> str:
-    cols = "grid-2" if len(sec["cards"]) in (4, 5) else "grid-3"
-    body = "\n".join(card_html(c) for c in sec["cards"])
+    body = "\n".join(card_html(c) for c in sec["cards"])  # a feature card spans the row; the rest sit three across
     return f"""  <section class="band" id="{e(sec['id'])}">
     <div class="wrap">
       <div class="band-head reveal"><h2>{e(sec['heading'])}</h2><p>{e(sec['intro'])}</p></div>
-      <div class="grid {cols}">
+      <div class="grid grid-3">
 {body}
       </div>
     </div>
   </section>"""
 
 
-def credits(pages: dict, images: dict) -> str:
-    used = {pages["hero"]["image"]} | {c["image"]["key"] for c in cards(pages)}
-    names = [f'<a href="{e(s["url"])}" target="_blank" rel="noopener">{e(s["credit"])}</a>' for k, s in images["sources"].items() if k in used]
-    return ", ".join(names[:-1]) + " and " + names[-1] if len(names) > 1 else names[0]
+def used_sources(pages: dict, images: dict) -> dict[str, dict]:
+    keys = {pages["hero"]["image"]} | {c["image"]["key"] for c in cards(pages)}
+    return {k: s for k, s in images["sources"].items() if k in keys}
+
+
+def credits(pages: dict, images: dict) -> tuple[str, str]:
+    """The footer's picture credits: photographers (Unsplash), and the data lines for pictures cut from the linked pages."""
+    used = used_sources(pages, images)
+    names = [f'<a href="{e(s["url"])}" target="_blank" rel="noopener">{e(s["credit"])}</a>' for s in used.values() if "file" in s]
+    photos = ", ".join(names[:-1]) + " and " + names[-1] if len(names) > 1 else names[0]
+    lines: list[str] = []
+    for s in used.values():
+        for ln in s.get("lines", []):
+            if ln not in lines:
+                lines.append(ln)
+    return photos, " ".join(e(ln) for ln in lines)
 
 
 def page(pages: dict, images: dict) -> str:
@@ -123,6 +137,7 @@ def page(pages: dict, images: dict) -> str:
     to = h["primary"]["to"]
     nav = "".join(f'<a href="#{e(s["id"])}">{e(n)}</a>' for s, n in zip(pages["sections"], ("Stories", "Explore", "Tools"), strict=True))
     sections = "\n".join(section_html(s) for s in pages["sections"])
+    photos, lines = credits(pages, images)
     return f"""<!doctype html>
 <html lang="en-GB" data-type="ledger" data-palette="tide" data-surface="nordic-cool">
 <head>
@@ -150,19 +165,14 @@ def page(pages: dict, images: dict) -> str:
     <div class="wrap hero-copy">
       <p class="eyebrow">Subsurface stories, maps and tools</p>
       <h1>{e(h['headline'])}</h1>
-      <p class="lede">{e(h['lede'])}</p>
       <p class="cta"><a class="btn btn-primary" href="#{e(to)}">{e(h['primary']['label'])}</a><a class="btn btn-quiet" href="{e(h['secondary']['to'])}">{e(h['secondary']['label'])}</a></p>
     </div>
   </section>
 {sections}
-  <section class="wrap about reveal">
-    <h2>{e(pages['about']['heading'])}</h2>
-    <p>{e(pages['about']['text'])}</p>
-  </section>
 </main>
 <footer>
   <div class="wrap">
-    <p>Photographs by {credits(pages, images)}, from Unsplash (Unsplash License), detuned into the fjord colour scale of SubScout.</p>
+    <p>Card pictures are cut from the linked pages' own figures, and from photographs by {photos} (Unsplash, Unsplash License), all detuned into the fjord colour scale of SubScout. {lines}</p>
     <p>Colours, type and theme switch from <a href="{REPO_URL}/SubScout" target="_blank" rel="noopener">SubScout</a>. Every page linked here is built from open data and states its sources on the page.</p>
     <p>Built with Overlook by Adam McCarthy (<a href="{SELF_URL}" target="_blank" rel="noopener">{SELF_URL}</a>). MIT License with Acknowledgement.</p>
   </div>

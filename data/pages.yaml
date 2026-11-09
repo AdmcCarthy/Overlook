@@ -1,14 +1,15 @@
 # The cards on the page: one entry per public page or repo. Order is the order shown.
 # live: the published page (omit when a repo has none); repo: the GitHub repository name.
-# image: a key from images.yaml and the crop (centre x, centre y, width as a fraction of the picture).
+# image: a key from images.yaml and a crop. Photographs: cx, cy (centre) and w (width as a fraction of the picture).
+# Figures from the pages: box [x, y, width, height] in pixels of the captured original. Crops are 3:2.
 # Blurbs state only what the page itself says; no numbers here, so none needs a source.
+# Repositories that must never appear are in excluded.yaml.
 
 hero:
   image: wadi
   headline: "What lies beneath, made clear."
-  lede: "Stories, maps and tools that turn open energy and geoscience data into pictures worth trusting. Every figure states its source, its units and how sure it is."
-  primary: { label: Start with the shelf, to: tulip }
-  secondary: { label: Browse everything, to: "#stories" }
+  primary: { label: "Start with the shelf", to: tulip }
+  secondary: { label: "Browse everything", to: "#stories" }
 
 sections:
   - id: stories
@@ -21,7 +22,7 @@ sections:
         repo: Tulip
         live: https://admccarthy.github.io/Tulip/
         blurb: "Every field on the Norwegian shelf, month by month, as a stream. See the giants that came first, the long tail that followed and what is left to produce."
-        image: { key: delta, cx: 0.55, cy: 0.42, w: 0.78 }
+        image: { key: tulip_full, box: [460, 200, 1050, 700] }
         feature: true
       - id: wildcat
         kind: Story
@@ -29,14 +30,14 @@ sections:
         repo: Wildcat
         live: https://admccarthy.github.io/Wildcat/
         blurb: "Fifty years of Norwegian exploration wells on one map. They still find oil or gas about half the time, in finds that keep getting smaller."
-        image: { key: badlands, cx: 0.6, cy: 0.5, w: 0.7 }
+        image: { key: wildcat_glyphs, box: [425, 262, 741, 494] }
       - id: apa
         kind: Story
         title: "Close to home"
         repo: APA_awards
         live: https://admccarthy.github.io/APA_awards/
         blurb: "Norway's latest licensing round, read company by company. Gaps filled around existing fields, in closer partnerships."
-        image: { key: wadi, cx: 0.8, cy: 0.74, w: 0.36 }
+        image: { key: apa_map, box: [640, 1900, 640, 427] }
       - id: pinpoints
         kind: Story
         title: "Pinpoints and Echoes"
@@ -44,13 +45,6 @@ sections:
         live: https://admccarthy.github.io/Pinpoints-and-Echoes/
         blurb: "A handful of boreholes and the echoes of sound waves become a confident picture of rocks no one has seen. Here is how far to trust it."
         image: { key: agate, cx: 0.45, cy: 0.5, w: 0.8 }
-      - id: forty-eight
-        kind: Story
-        title: "Forty-Eight Hours"
-        repo: Viz_demo_generic
-        live: https://admccarthy.github.io/Viz_demo_generic/
-        blurb: "The same craft on another subject: the Nasdaq rout of 5 November 2026, measured against the boom that came before it."
-        image: { key: braids, cx: 0.22, cy: 0.38, w: 0.4 }
 
   - id: explore
     heading: "Maps, sketches and surfaces to explore"
@@ -62,21 +56,21 @@ sections:
         repo: seismic_art_gallery
         live: https://admccarthy.github.io/seismic_art_gallery/
         blurb: "Seismic amplitude drawn as rings, cities, shells and constellations, and two surveys eight years apart as one picture."
-        image: { key: braids, cx: 0.5, cy: 0.5, w: 0.86 }
+        image: { key: seismic_flow, box: [270, 150, 1560, 1040] }
       - id: volve
-        kind: Map style
+        kind: "Map style"
         title: "Volve Surfaces"
         repo: volve-surfaces
         live: https://admccarthy.github.io/volve-surfaces/
         blurb: "Volve horizons as smoothed, shaded contour maps, with the colour ramps, smoothing and contours open to compare."
-        image: { key: badlands, cx: 0.27, cy: 0.36, w: 0.44 }
+        image: { key: volve_fjord, box: [165, 1400, 528, 352] }
       - id: relief
         kind: Atlas
         title: "Relief"
         repo: Relief
         live: https://admccarthy.github.io/Relief/
         blurb: "Open topography and bathymetry for the North Sea, the Norwegian Sea, the Barents Sea and beyond, in one quiet house style."
-        image: { key: delta, cx: 0.5, cy: 0.86, w: 0.56 }
+        image: { key: relief_maps, box: [147, 800, 562, 375] }
 
   - id: tools
     heading: "The tools behind the pages"
@@ -88,7 +82,7 @@ sections:
         repo: SubScout
         live: https://admccarthy.github.io/SubScout/
         blurb: "One Markdown file and its data become a page that reads as an article or plays as a deck, with the style and the checks built in."
-        image: { key: agate, cx: 0.8, cy: 0.82, w: 0.4 }
+        image: { key: subscout_colour, box: [140, 1960, 600, 400] }
       - id: plate
         kind: Print
         title: "Plate"
@@ -101,7 +95,3 @@ sections:
         repo: Sheet
         blurb: "Map sheets from A4 to A0 on Relief terrain: PDF with live text and a georeferenced GeoTIFF."
         image: { key: delta, cx: 0.12, cy: 0.5, w: 0.4 }
-
-about:
-  heading: "Who is behind this"
-  text: "Adam McCarthy, a petroleum geoscientist. Each page is built from open data, states where the data came from, and says how sure the numbers are."
