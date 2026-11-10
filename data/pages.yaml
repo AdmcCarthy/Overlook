@@ -51,7 +51,7 @@ sections:
         repo: Sand-from-the-Source
         live: https://admccarthy.github.io/Sand-from-the-Source/
         blurb: "Every sandstone was once a hillside. The rivers of North-east Europe, the rock they erode and the sand they can send to the shelf, with Britain, Norway and the lowlands compared."
-        image: { key: sand_basin, box: [560, 1124, 690, 460] }
+        image: { key: sand_basin, box: [330, 1100, 900, 600] }
 
   - id: explore
     heading: "Maps, sketches and surfaces to explore"
