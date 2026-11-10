@@ -5,8 +5,8 @@ the tools behind them, each one a click away. It is for browsing and sharing, no
 the pages it links to.
 
 The cards come from [`data/pages.yaml`](data/pages.yaml): Tulip, Wildcat, APA_awards, Pinpoints-and-Echoes and
-Viz_demo_generic (stories); seismic_art_gallery, volve-surfaces and Relief (to explore); SubScout, Plate and Sheet
-(tools). Plate and Sheet have no published page, so their cards link to the code. A new page is one entry in that file
+Sand-from-the-Source (stories); seismic_art_gallery, volve-surfaces, Relief and Bedrock (to explore); SubScout, Plate
+and Sheet (tools). Plate and Sheet have no published page, so their cards link to the code. A new page is one entry in that file
 and one picture crop. The older practice and course repositories in the same account are kept off the page on purpose:
 [`data/excluded.yaml`](data/excluded.yaml) lists them, and the build and the tests fail if any is a card or is linked.
 
