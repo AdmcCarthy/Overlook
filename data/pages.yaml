@@ -45,6 +45,13 @@ sections:
         live: https://admccarthy.github.io/Pinpoints-and-Echoes/
         blurb: "A handful of boreholes and the echoes of sound waves become a confident picture of rocks no one has seen. Here is how far to trust it."
         image: { key: agate, cx: 0.45, cy: 0.5, w: 0.8 }
+      - id: sand
+        kind: Story
+        title: "Sand from the Source"
+        repo: Sand-from-the-Source
+        live: https://admccarthy.github.io/Sand-from-the-Source/
+        blurb: "Every sandstone was once a hillside. The rivers of North-east Europe, the rock they erode and the sand they can send to the shelf, with Britain, Norway and the lowlands compared."
+        image: { key: sand_basin, box: [560, 1124, 690, 460] }
 
   - id: explore
     heading: "Maps, sketches and surfaces to explore"
@@ -71,6 +78,13 @@ sections:
         live: https://admccarthy.github.io/Relief/
         blurb: "Open topography and bathymetry for the North Sea, the Norwegian Sea, the Barents Sea and beyond, in one quiet house style."
         image: { key: relief_maps, box: [147, 800, 562, 375] }
+      - id: bedrock
+        kind: Gallery
+        title: "Bedrock"
+        repo: Bedrock
+        live: https://admccarthy.github.io/Bedrock/
+        blurb: "Open geological maps of Norway, Britain, Fennoscandia and the North Sea read into one language and drawn on terrain, in chart, vintage and paper colours, with the catchments that erode them."
+        image: { key: bedrock_norway, box: [330, 170, 960, 640] }
 
   - id: tools
     heading: "The tools behind the pages"

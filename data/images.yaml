@@ -60,3 +60,15 @@ sources:
     download: https://raw.githubusercontent.com/AdmcCarthy/seismic_art_gallery/main/gallery/flow.jpg
     page: seismic_art_gallery
     lines: ["Seismic sketch drawn from synthetic data."]
+  sand_basin:
+    capture: { url: "https://admccarthy.github.io/Sand-from-the-Source/?theme=light", window: [1440, 2200] }
+    page: Sand-from-the-Source
+    lines:
+      - "Catchments and rivers: HydroSHEDS (Lehner and Grill 2013), grouped and summarised by the author."
+      - "Base maps: Relief; © DLR e.V. 2010-2014 and © Airbus 2014-2018, provided under COPERNICUS by the European Union and ESA; EMODnet Bathymetry Consortium (2024): EMODnet Digital Bathymetry (DTM)."
+  bedrock_norway:
+    capture: { url: "https://admccarthy.github.io/Bedrock/geology.html?r=norway&shade=0.9&theme=light", window: [1400, 1000] }
+    page: Bedrock
+    lines:
+      - "Contains data made available by NGU under NLOD."
+      - "Base maps: Relief; © DLR e.V. 2010-2014 and © Airbus 2014-2018, provided under COPERNICUS by the European Union and ESA; EMODnet Bathymetry Consortium (2024): EMODnet Digital Bathymetry (DTM)."
