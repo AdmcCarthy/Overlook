@@ -109,3 +109,50 @@ sections:
         repo: Sheet
         blurb: "Map sheets from A4 to A0 on Relief terrain: PDF with live text and a georeferenced GeoTIFF."
         image: { key: delta, cx: 0.12, cy: 0.5, w: 0.4 }
+
+  - id: libraries
+    heading: "The libraries behind the analysis"
+    intro: "Open code for the calculations under the pages. Each library is a small Python package with its tests and its assumptions written down."
+    cards:
+      - id: physics_base
+        kind: Library
+        title: "ep-physics-base"
+        repo: ep-physics-base
+        blurb: "Units, events, settings with defaults and one figure standard, shared by the other libraries."
+        image: { key: delta, cx: 0.5, cy: 0.5, w: 0.9 }
+      - id: wellbore
+        kind: Library
+        title: "ep-wellbore"
+        repo: ep-wellbore
+        blurb: "Trajectories, surveys, wellheads and the pressure losses of a well, with the error of each position stated."
+        image: { key: badlands, cx: 0.3, cy: 0.6, w: 0.5 }
+      - id: thermal
+        kind: Library
+        title: "ep-thermal"
+        repo: ep-thermal
+        blurb: "Formation temperature from bottom-hole readings, with every estimate labelled as one."
+        image: { key: wadi, cx: 0.7, cy: 0.3, w: 0.45 }
+      - id: pressure_pvt_fluids
+        kind: Library
+        title: "ep-pressure-pvt-fluids"
+        repo: ep-pressure-pvt-fluids
+        blurb: "Pore pressure, PVT, equations of state and column grading, with the figures and pages that show them."
+        image: { key: agate, cx: 0.5, cy: 0.5, w: 0.5 }
+      - id: seismic_lib
+        kind: Library
+        title: "ep-seismic"
+        repo: ep-seismic
+        blurb: "Horizons, faults and vertical profiles, and seismic volumes read in place without loading the file."
+        image: { key: badlands, cx: 0.75, cy: 0.35, w: 0.45 }
+      - id: depth_velocity
+        kind: Library
+        title: "ep-depth-velocity"
+        repo: ep-depth-velocity
+        blurb: "Depth conversion judged on wells left out, with velocity maps and time-depth tables."
+        image: { key: delta, cx: 0.8, cy: 0.4, w: 0.4 }
+      - id: petrophysics
+        kind: Library
+        title: "ep-petrophysics"
+        repo: ep-petrophysics
+        blurb: "Interpretation, rock-physics and core data checked against the equations they claim to follow."
+        image: { key: agate, cx: 0.2, cy: 0.7, w: 0.35 }

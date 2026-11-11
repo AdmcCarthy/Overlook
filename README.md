@@ -6,7 +6,7 @@ the pages it links to.
 
 The cards come from [`data/pages.yaml`](data/pages.yaml): Tulip, Wildcat, APA_awards, Pinpoints-and-Echoes and
 Sand-from-the-Source (stories); seismic_art_gallery, volve-surfaces, Relief and Bedrock (to explore); SubScout, Plate
-and Sheet (tools). Plate and Sheet have no published page, so their cards link to the code. A new page is one entry in that file
+and Sheet (tools); then ep-physics-base, ep-wellbore, ep-thermal, ep-pressure-pvt-fluids, ep-seismic, ep-depth-velocity and ep-petrophysics (the libraries behind the analysis). Plate, Sheet and the libraries have no published page, so their cards link to the code. A new page is one entry in that file
 and one picture crop. The older practice and course repositories in the same account are kept off the page on purpose:
 [`data/excluded.yaml`](data/excluded.yaml) lists them, and the build and the tests fail if any is a card or is linked.
 

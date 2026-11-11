@@ -146,3 +146,10 @@ def test_live_links_answer():
             if url:
                 with urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=30) as r:
                     assert r.status == 200, url
+
+
+def test_libraries_are_open_code_with_photographs_and_no_page_of_their_own():
+    libs = next(s for s in PAGES["sections"] if s["id"] == "libraries")
+    assert {c["repo"] for c in libs["cards"]} == {"ep-physics-base", "ep-wellbore", "ep-thermal", "ep-pressure-pvt-fluids", "ep-seismic", "ep-depth-velocity", "ep-petrophysics"}
+    for c in libs["cards"]:
+        assert not c.get("live") and "file" in IMAGES["sources"][c["image"]["key"]], c["id"]      # no page: the card links to the code; a photograph, never a figure

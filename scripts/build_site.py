@@ -135,7 +135,7 @@ def credits(pages: dict, images: dict) -> tuple[str, str]:
 def page(pages: dict, images: dict) -> str:
     h = pages["hero"]
     to = h["primary"]["to"]
-    nav = "".join(f'<a href="#{e(s["id"])}">{e(n)}</a>' for s, n in zip(pages["sections"], ("Stories", "Explore", "Tools"), strict=True))
+    nav = "".join(f'<a href="#{e(s["id"])}">{e(n)}</a>' for s, n in zip(pages["sections"], ("Stories", "Explore", "Tools", "Libraries"), strict=True))
     sections = "\n".join(section_html(s) for s in pages["sections"])
     photos, lines = credits(pages, images)
     return f"""<!doctype html>
