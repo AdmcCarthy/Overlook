@@ -173,7 +173,7 @@ def page(pages: dict, images: dict) -> str:
 <footer>
   <div class="wrap">
     <p>Card pictures are cut from the linked pages' own figures, and from photographs by {photos} (Unsplash, Unsplash License), all detuned into the fjord colour scale of SubScout. {lines}</p>
-    <p>Colours, type and theme switch from <a href="{REPO_URL}/kit-subscout" target="_blank" rel="noopener">SubScout</a>. Every page linked here is built from open data and states its sources on the page.</p>
+    <p>Colours, type and theme switch from <a href="{REPO_URL}/core-subscout" target="_blank" rel="noopener">SubScout</a>. Every page linked here is built from open data and states its sources on the page.</p>
     <p>Built with Overlook by Adam McCarthy (<a href="{SELF_URL}" target="_blank" rel="noopener">{SELF_URL}</a>). MIT License with Acknowledgement.</p>
   </div>
 </footer>

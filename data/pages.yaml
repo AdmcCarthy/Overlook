@@ -93,8 +93,8 @@ sections:
       - id: subscout
         kind: Framework
         title: "SubScout"
-        repo: kit-subscout
-        live: https://admccarthy.github.io/kit-subscout/
+        repo: core-subscout
+        live: https://admccarthy.github.io/core-subscout/
         blurb: "One Markdown file and its data become a page that reads as an article or plays as a deck, with the style and the checks built in."
         image: { key: badlands, cx: 0.6, cy: 0.5, w: 0.7 }
       - id: plate
