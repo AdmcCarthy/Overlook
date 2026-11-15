@@ -4,8 +4,8 @@
 the tools behind them, each one a click away. It is for browsing and sharing, not for argument; the arguments live in
 the pages it links to.
 
-The cards come from [`data/pages.yaml`](data/pages.yaml): Tulip, Wildcat, APA_awards, Pinpoints-and-Echoes and
-Sand-from-the-Source (stories); seismic_art_gallery, volve-surfaces, Relief and Bedrock (to explore); SubScout, Plate
+The cards come from [`data/pages.yaml`](data/pages.yaml): Tulip, Wildcat, APA_awards, ds-pinpoints-and-echoes and
+ds-sand-from-the-source (stories); seismic_art_gallery, kit-surfaces, Relief and Bedrock (to explore); SubScout, Plate
 and Sheet (tools). Plate and Sheet have no published page, so their cards link to the code. The shared libraries are private and have no card. A new page is one entry in that file
 and one picture crop. The older practice and course repositories in the same account are kept off the page on purpose:
 [`data/excluded.yaml`](data/excluded.yaml) lists them, and the build and the tests fail if any is a card or is linked.
@@ -47,4 +47,4 @@ The wording is custom, so the licence is not OSI-approved.
 
 Third-party material keeps its own terms. Photographs: Dan Meyers, NASA, Patrick Robert Doyle, Savannah Wakefield and USGS,
 via Unsplash, under the Unsplash License, credited on the page. Colour tokens, type pairing and the theme switch are
-[SubScout](https://github.com/AdmcCarthy/SubScout)'s, copied unchanged at build time from the pinned release.
+[SubScout](https://github.com/AdmcCarthy/kit-subscout)'s, copied unchanged at build time from the pinned release.
