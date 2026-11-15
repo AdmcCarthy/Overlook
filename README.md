@@ -47,4 +47,4 @@ The wording is custom, so the licence is not OSI-approved.
 
 Third-party material keeps its own terms. Photographs: Dan Meyers, NASA, Patrick Robert Doyle, Savannah Wakefield and USGS,
 via Unsplash, under the Unsplash License, credited on the page. Colour tokens, type pairing and the theme switch are
-[SubScout](https://github.com/AdmcCarthy/kit-subscout)'s, copied unchanged at build time from the pinned release.
+[SubScout](https://github.com/AdmcCarthy/core-subscout)'s, copied unchanged at build time from the pinned release.
