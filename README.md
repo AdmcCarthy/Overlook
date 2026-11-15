@@ -1,5 +1,9 @@
 # Overlook
 
+[![Pages](https://github.com/AdmcCarthy/Overlook/actions/workflows/pages.yml/badge.svg)](https://github.com/AdmcCarthy/Overlook/actions/workflows/pages.yml)
+![Python](https://img.shields.io/badge/python-%E2%89%A53.12-lightgrey)
+[![Licence](https://img.shields.io/badge/licence-MIT%20with%20acknowledgement-lightgrey)](LICENSE)
+
 **What lies beneath, made clear.** A calm landing page that gathers the public pages built so far: stories, maps and
 the tools behind them, each one a click away. It is for browsing and sharing, not for argument; the arguments live in
 the pages it links to.
