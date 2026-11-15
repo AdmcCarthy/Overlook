@@ -35,34 +35,34 @@ sources:
     what: The Lena delta from Landsat, in false colour
   # figures from the published pages
   tulip_full:
-    capture: { url: "https://admccarthy.github.io/Tulip/full/?theme=light", window: [1900, 1000] }
+    capture: { url: "https://admccarthy.github.io/ds-tulip/full/?theme=light", window: [1900, 1000] }
     page: Tulip
     lines: ["Source: Sodir."]
   wildcat_glyphs:
-    capture: { url: "https://admccarthy.github.io/Wildcat/export/glyphs/?theme=light", window: [1600, 1100] }
+    capture: { url: "https://admccarthy.github.io/ds-wildcat/export/glyphs/?theme=light", window: [1600, 1100] }
     page: Wildcat
     lines:
       - "Source: Sodir."
       - "Base maps: Relief; © DLR e.V. 2010-2014 and © Airbus 2014-2018, provided under COPERNICUS by the European Union and ESA; EMODnet Bathymetry Consortium (2024): EMODnet Digital Bathymetry (DTM)."
   apa_map:
-    capture: { url: "https://admccarthy.github.io/APA_awards/", window: [1440, 2600] }
+    capture: { url: "https://admccarthy.github.io/ds-apa-awards/", window: [1440, 2600] }
     page: APA_awards
     lines: ["Source: Sodir."]
   volve_fjord:
-    capture: { url: "https://admccarthy.github.io/volve-surfaces/", window: [1440, 3300] }
-    page: volve-surfaces
+    capture: { url: "https://admccarthy.github.io/kit-surfaces/", window: [1440, 3300] }
+    page: kit-surfaces
     lines: ["Contains data from the Volve data village, © Equinor ASA and the former Volve licence partners (ExxonMobil E&P Norway, Bayerngas Norge). Used under the Volve Terms and Conditions. Generalised for display."]
   relief_maps:
-    capture: { url: "https://admccarthy.github.io/Relief/", window: [1440, 1300] }
+    capture: { url: "https://admccarthy.github.io/kit-relief/", window: [1440, 1300] }
     page: Relief
     lines: ["Base maps: Relief; © DLR e.V. 2010-2014 and © Airbus 2014-2018, provided under COPERNICUS by the European Union and ESA; EMODnet Bathymetry Consortium (2024): EMODnet Digital Bathymetry (DTM)."]
   seismic_flow:
-    download: https://raw.githubusercontent.com/AdmcCarthy/seismic_art_gallery/main/gallery/flow.jpg
+    download: https://raw.githubusercontent.com/AdmcCarthy/kit-seismic-art-gallery/main/gallery/flow.jpg
     page: seismic_art_gallery
     lines: ["Seismic sketch drawn from synthetic data."]
   sand_basin:
-    capture: { url: "https://admccarthy.github.io/Sand-from-the-Source/?theme=light", window: [1440, 2200] }
-    page: Sand-from-the-Source
+    capture: { url: "https://admccarthy.github.io/ds-sand-from-the-source/?theme=light", window: [1440, 2200] }
+    page: ds-sand-from-the-source
     lines:
       - "Catchments and rivers: HydroSHEDS (Lehner and Grill 2013), grouped and summarised by the author."
       - "Base maps: Relief; © DLR e.V. 2010-2014 and © Airbus 2014-2018, provided under COPERNICUS by the European Union and ESA; EMODnet Bathymetry Consortium (2024): EMODnet Digital Bathymetry (DTM)."
