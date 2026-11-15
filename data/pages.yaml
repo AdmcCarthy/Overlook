@@ -81,8 +81,8 @@ sections:
       - id: bedrock
         kind: Gallery
         title: "Bedrock"
-        repo: Bedrock
-        live: https://admccarthy.github.io/Bedrock/
+        repo: kit-bedrock
+        live: https://admccarthy.github.io/kit-bedrock/
         blurb: "Open geological maps of Norway, Britain, Fennoscandia and the North Sea read into one language and drawn on terrain, in chart, vintage and paper colours, with the catchments that erode them."
         image: { key: bedrock_norway, box: [330, 170, 960, 640] }
 

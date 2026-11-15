@@ -67,7 +67,7 @@ sources:
       - "Catchments and rivers: HydroSHEDS (Lehner and Grill 2013), grouped and summarised by the author."
       - "Base maps: Relief; © DLR e.V. 2010-2014 and © Airbus 2014-2018, provided under COPERNICUS by the European Union and ESA; EMODnet Bathymetry Consortium (2024): EMODnet Digital Bathymetry (DTM)."
   bedrock_norway:
-    capture: { url: "https://admccarthy.github.io/Bedrock/geology.html?r=norway&shade=0.9&theme=light", window: [1400, 1000] }
+    capture: { url: "https://admccarthy.github.io/kit-bedrock/geology.html?r=norway&shade=0.9&theme=light", window: [1400, 1000] }
     page: Bedrock
     lines:
       - "Contains data made available by NGU under NLOD."
