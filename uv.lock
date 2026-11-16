@@ -143,7 +143,7 @@ requires-dist = [
     { name = "numpy", specifier = ">=1.26" },
     { name = "pillow", specifier = ">=10" },
     { name = "pyyaml", specifier = ">=6" },
-    { name = "subscout", git = "https://github.com/AdmcCarthy/SubScout?tag=v0.6.0" },
+    { name = "subscout", git = "https://github.com/AdmcCarthy/core-subscout?tag=v0.6.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -312,7 +312,7 @@ wheels = [
 [[package]]
 name = "subscout"
 version = "0.6.0"
-source = { git = "https://github.com/AdmcCarthy/SubScout?tag=v0.6.0#69aa29b75612f34d24f818f9a7e16cd9ad150416" }
+source = { git = "https://github.com/AdmcCarthy/core-subscout?tag=v0.6.0#69aa29b75612f34d24f818f9a7e16cd9ad150416" }
 dependencies = [
     { name = "coloraide" },
     { name = "jinja2" },
