@@ -43,7 +43,7 @@ sections:
         title: "Pinpoints and Echoes"
         repo: ds-pinpoints-and-echoes
         live: https://admccarthy.github.io/ds-pinpoints-and-echoes/
-        blurb: "A handful of boreholes and the echoes of sound waves become a confident picture of rocks no one has seen. Here is how far to trust it."
+        blurb: "From a pore throat a few micrometres wide to the whole North Sea, every step up the scale leaves a range open. The ranges multiply into the volume, the value and the decision."
         image: { key: agate, cx: 0.45, cy: 0.5, w: 0.8 }
       - id: sand
         kind: Story
